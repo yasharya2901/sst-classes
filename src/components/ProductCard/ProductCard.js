@@ -1,8 +1,15 @@
 import './ProductCard.css';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import logo1 from '../../assests/logo1.png';
 function ProductCard({ title, price }) {
+  var a = 10;
+  a = a + 1;
   let pRef = useRef(0);
+  let iRef = useRef(0);
+  let oRef = useRef(0);
+  let [inputV, setInputV] = useState('');
+
+  // setInput(value);
   function printTitle() {
     console.log("printTitle");
     console.log(pRef.current.innerText);
@@ -12,11 +19,22 @@ function ProductCard({ title, price }) {
       pRef.current.style.display = "none";
     }
   }
+  console.log("Rerendered", inputV);
+  function displayOutput(e) {
+    // console.log(iRef.current);
+    // console.log(oRef.current);
+    // oRef.current.innerText = `Output here: ${ iRef.current.value }`;
+    // oRef.current.innerText = oRef.current.innerText + iRef.current.value;
+    setInputV(e.target.value);
+  }
+
   return (
     <div className="product-card">
       <p onClick={printTitle}> {title}</p>
       <p ref={pRef}> {price}</p>
       <img src={logo1} />
+      <input type="text" onChange={displayOutput} ref={iRef} />
+      <p ref={oRef}>Over here the output would arrive - {inputV }</p>
     </div>
     )
   }
@@ -35,3 +53,15 @@ export default ProductCard;
 // they should not render a ui 
 // they should be on the top of a function 
 // they should be not in any conditon or loops 
+
+
+
+// state variable = 
+// whenver a state variable is set it would cause a rerender of the component
+// and the value of the variable would be retained on rerenders
+
+// function or component is called for the first time 
+// Mounting
+
+// useState(default value)
+// returns [stateVar, setterFn];
