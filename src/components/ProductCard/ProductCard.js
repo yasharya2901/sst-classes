@@ -1,4 +1,5 @@
 import './ProductCard.css';
+import AddToCart from '../AddToCart/AddToCart';
 import { useRef, useState } from 'react';
 import logo1 from '../../assests/logo1.png';
 function ProductCard({ title, price }) {
@@ -7,19 +8,19 @@ function ProductCard({ title, price }) {
   let pRef = useRef(0);
   let iRef = useRef(0);
   let oRef = useRef(0);
-  let [inputV, setInputV] = useState('');
+  let [inputV, setInputV] = useState('Class');
 
   // setInput(value);
   function printTitle() {
-    console.log("printTitle");
-    console.log(pRef.current.innerText);
+    // console.log("printTitle");
+    // console.log(pRef.current.innerText);
     if (pRef.current.style.display === "none") {
       pRef.current.style.display = "block";
     } else {
       pRef.current.style.display = "none";
     }
   }
-  console.log("Rerendered", inputV);
+  // console.log("Rerendered", inputV);
   function displayOutput(e) {
     // console.log(iRef.current);
     // console.log(oRef.current);
@@ -33,8 +34,9 @@ function ProductCard({ title, price }) {
       <p onClick={printTitle}> {title}</p>
       <p ref={pRef}> {price}</p>
       <img src={logo1} />
-      <input type="text" onChange={displayOutput} ref={iRef} />
-      <p ref={oRef}>Over here the output would arrive - {inputV }</p>
+      <input type="text" onChange={displayOutput} ref={iRef} value={inputV} />
+      <p ref={oRef}>Over here the output would arrive - {inputV}</p>
+      <AddToCart />
     </div>
     )
   }
@@ -65,3 +67,6 @@ export default ProductCard;
 
 // useState(default value)
 // returns [stateVar, setterFn];
+
+
+// useEffect(fn, [])
