@@ -1,6 +1,7 @@
 import ProductCard from "../ProductCard/ProductCard";
 import Effect from "../Effect/Effect";
 import { useState, useEffect } from "react";
+import useWindowSize from "../../hooks/useWindowSize";
 function Products() {
     // const products = [
     //       {
@@ -37,6 +38,8 @@ function Products() {
   // let products = [];
 
   let [products, setProducts] = useState([]);
+
+  console.log(useWindowSize());
   useEffect(() => {
     fetch("https://run.mocky.io/v3/279c028e-f492-4e0f-932b-51dbed1b1dce").then(
       (response) => {
@@ -53,8 +56,8 @@ function Products() {
       <div>
           <div><Effect /></div>
             {
-                products.map(function (item) {
-                  return (<ProductCard key={item.id}  title={item.title} price={item.price} />)
+                products.map(function (item, index) {
+                  return (<ProductCard key={index}  title={item.title} price={item.price} />)
                 })
             }
         </div>
@@ -201,4 +204,51 @@ export default Products;
 //   }
 // }
 
-// 
+// oldDom = [
+//   <ProductCard title="Title 1" />,
+//   <ProductCard title="Title 2" />,
+//   <ProductCard title="Title 3" />
+// ]
+
+// newDom = [
+//   <ProductCard title="Title 1" />,
+//   <ProductCard title="Title 4" />,
+//   <ProductCard title="Title 2" />,
+//   <ProductCard title="Title 3" />
+// ]
+
+// title 2 has changed to 4
+// title 3 has changed to 2
+// product card with title 3 has to be added
+
+
+// oldDom = [
+//   <ProductCard key={i1} title="Title 1" />,
+//   <ProductCard  key={i2} title="Title 2" />,
+//   <ProductCard  key={i3} title="Title 3" />
+// ]
+
+// newDom = [
+//   <ProductCard  key={i1} title="Title 1" />,
+//   <ProductCard  key={i4} title="Title 4" />,
+//   <ProductCard  key={i2} title="Title 2" />,
+//   <ProductCard  key={i3} title="Title 3" />
+// ]
+
+// product card with key i4 and title 4 has to be added
+// oldDom = [
+//   <ProductCard key={0} title="Title 1" />,
+//   <ProductCard key={1} title="Title 2" />,
+//   <ProductCard key={2} title="Title 3" />
+// ]
+
+// newDom = [
+//   <ProductCard key={0} title="Title 1" />,
+//   <ProductCard key={1} title="Title 4" />,
+//   <ProductCard key={2} title="Title 2" />,
+//   <ProductCard key={3} title="Title 3" />
+// ]
+
+// change title 2 to 4
+// change title 3 2
+// add product card with key 3 and title 3
