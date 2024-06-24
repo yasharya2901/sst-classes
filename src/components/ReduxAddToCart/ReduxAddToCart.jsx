@@ -1,5 +1,6 @@
 function AddToCart({ product }) {
-    console.log("add to cart", product.id)
+    console.log("add to cart", product.id);
+    // useSelector
     function increase() {
         //dispatch({type: , payload: })
     }
