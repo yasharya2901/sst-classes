@@ -1,0 +1,6 @@
+.cart {
+    position: fixed;
+    height: max-content;
+    width: max-content;
+    background-color: aliceblue;
+}
